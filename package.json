@@ -1,0 +1,22 @@
+{
+  "name": "deragisch",
+  "version": "1.0.0",
+  "description": "hhthemederagisch",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.3",
+    "gulp-sass": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://iocron@bitbucket.org/hauerheinrich/hhthemederagisch.git"
+  },
+  "author": "iocron",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hauerheinrich/hhthemederagisch#readme"
+}

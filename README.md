@@ -21,3 +21,5 @@ Convert Scss Files to CSS compressed (once):
 
 Convert Scss Files to CSS compressed + uncompressed (every time a file changes):
 `gulp sass:watch`
+
+*(Side Note: Alternatively you can use the native SASS Method if you do not prefer gulp: `sass --watch Resources/Public/Scss:Resources/Public/Css` (uncompressed only))*

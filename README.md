@@ -11,7 +11,7 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 
 *(Side Note: You can use `npm update` somewhat later on if you modify / add other dependencies manually to this script)*
 
-## Console Usage (within the project folder):
+## Console Usage (within the theme folder):
 
 Convert Scss Files to CSS uncompressed (once):
 `gulp sass`

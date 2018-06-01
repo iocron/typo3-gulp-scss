@@ -9,6 +9,8 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
   * `npm init` (skip this step, if package.json is already present)
   * `npm install`
 
+*(Side Note: The One-Liner Version to Install everything is `cd <yourThemeDirectory> && curl -O https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/gulpfile.js && npm init && npm install`)*
+
 *(Side Note: You can use `npm update` somewhat later on if you modify / add other dependencies manually to this script)*
 
 ## Console Usage (within the theme folder):

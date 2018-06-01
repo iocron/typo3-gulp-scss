@@ -1,7 +1,7 @@
 {
-  "name": "deragisch",
+  "name": "typo3_gulp_scss",
   "version": "1.0.0",
-  "description": "hhthemederagisch",
+  "description": "",
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
@@ -14,9 +14,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://iocron@bitbucket.org/hauerheinrich/hhthemederagisch.git"
+    "url": "git+https://github.com/iocron/typo3-gulp-scss"
   },
   "author": "iocron",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/hauerheinrich/hhthemederagisch#readme"
+  "license": "MIT",
+  "homepage": "https://github.com/iocron/typo3-gulp-scss#readme"
 }

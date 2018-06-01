@@ -4,12 +4,10 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 
 ## Install:
 
-1. Copy this script (gulpfile.js) into your typo3 theme folder, then switch into your theme folder (console: `cd THEME_FOLDER`)
-2. Initialize the project / dependencies and install gulp + dependencies:
-  * `npm init` (skip this step, if package.json is already present)
-  * `npm install`
+1. Copy this script into your typo3 theme folder, then switch into your theme folder (console: `cd THEME_FOLDER`)
+2. Initialize the project / dependencies and install gulp + dependencies with `npm install`
 
-*(Side Note: The One-Liner Version to Install everything is `cd <yourThemeDirectory> && curl -O https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/gulpfile.js && npm init && npm install`)*
+*(Side Note: The One-Liner Version to Install everything is `cd <yourThemeDirectory> && curl -O https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/gulpfile.js && npm init && npm install gulp gulp-sass gulp-rename` after that you can use one of the new console commands below)*
 
 *(Side Note: You can use `npm update` somewhat later on if you modify / add other dependencies manually to this script)*
 

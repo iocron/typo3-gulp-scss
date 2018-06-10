@@ -14,12 +14,21 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 ## Console Usage (within the theme folder):
 
 Convert Scss Files to CSS uncompressed (once):
-`gulp sass`
+`gulp sass:uncompressed`
 
 Convert Scss Files to CSS compressed (once):
 `gulp sass:compressed`
 
-Convert Scss Files to CSS compressed + uncompressed (every time a file changes):
+Convert Scss Files to CSS compressed + uncompressed (watcher / every time a file changes):
 `gulp sass:watch`
+
+Minify JS Files (once):
+`gulp js:compressed`
+
+Minify JS Files (watcher / every time a file chanes):
+`gulp js:watch`
+
+Start all Watcher Tasks:
+`gulp watch`
 
 *(Side Note: Alternatively you can use the native SASS Method if you do not prefer gulp or if there are some complications with gulp: `sass --watch Resources/Public/Scss:Resources/Public/Css` (uncompressed only))*

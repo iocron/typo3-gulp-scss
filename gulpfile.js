@@ -17,6 +17,7 @@ var sass = require('gulp-sass');
 var rename = require("gulp-rename");
 var minify = require("gulp-babel-minify");
 
+// SCSS / SASS
 gulp.task('sass:uncompressed', function () {
   return gulp.src('./Resources/Public/Scss/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
@@ -34,6 +35,7 @@ gulp.task('sass:watch', function () {
   gulp.watch('./Resources/Public/Scss/**/*.scss', ['sass:uncompressed', 'sass:compressed']);
 });
 
+// JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(){
   gulp.src(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'])
     .pipe(minify())
@@ -42,8 +44,9 @@ gulp.task('js:compressed', function(){
 });
 
 gulp.task('js:watch', function(){
-    gulp.watch('./Resources/Public/JavaScript/**/*.js', 'js:compressed');
+    gulp.watch('./Resources/Public/JavaScript/**/*.js', ['js:compressed']);
 });
 
+// GLOBAL WATCHER / BUILD COMMANDS
 gulp.task('watch', ['sass:watch', 'js:watch']);
 gulp.task('build', ['sass:uncompressed', 'sass:compressed', 'js:compressed']);

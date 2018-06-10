@@ -1,6 +1,6 @@
-# typo3-gulp-scss - Gulp SCSS CSS Autocompiler
+# Typo3 Gulp SCSS Autocompiler + JS Minifier
 
-This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. This script has to be put into your theme folder.
+This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. It also minifies the JS Files if needed. This script has to be put into your theme folder.
 
 ## Install:
 

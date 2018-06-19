@@ -32,19 +32,19 @@ gulp.task('sass:compressed', function () {
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('./Resources/Public/Scss/**/*.scss', ['sass:uncompressed', 'sass:compressed']);
+  return gulp.watch('./Resources/Public/Scss/**/*.scss', ['sass:uncompressed', 'sass:compressed']);
 });
 
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(){
-  gulp.src(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'])
+  return gulp.src(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'])
     .pipe(minify())
     .pipe(rename({ suffix:".min" }))
     .pipe(gulp.dest('./Resources/Public/JavaScript'));
 });
 
 gulp.task('js:watch', function(){
-    gulp.watch('./Resources/Public/JavaScript/**/*.js', ['js:compressed']);
+    return gulp.watch('./Resources/Public/JavaScript/**/*.js', ['js:compressed']);
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS

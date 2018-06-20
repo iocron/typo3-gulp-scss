@@ -44,7 +44,7 @@ gulp.task('js:compressed', function(){
 });
 
 gulp.task('js:watch', function(){
-    return gulp.watch('./Resources/Public/JavaScript/**/*.js', ['js:compressed']);
+    return gulp.watch(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'], ['js:compressed']);
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS

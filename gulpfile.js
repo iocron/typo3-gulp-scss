@@ -17,14 +17,14 @@ let gulp = require('gulp'),
     sass = require('gulp-sass'),
     rename = require("gulp-rename"),
     minify = require("gulp-babel-minify"),
-    sourcemaps = require('gulp-sourcemaps'),
-    exec = require('child_process').exec;
+    sourcemaps = require('gulp-sourcemaps');
 
 // GENERIC VARIABLES
-const   themePath = './Resources/Public/',
-        scssPath = themePath + 'Scss/',
-        jsPath = themePath + 'JavaScript/',
-        cssPath = themePath + 'Css/';
+const exec = require('child_process').exec,
+      themePath = './Resources/Public/',
+      scssPath = themePath + 'Scss/',
+      jsPath = themePath + 'JavaScript/',
+      cssPath = themePath + 'Css/';
 
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){

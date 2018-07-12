@@ -1,4 +1,4 @@
-# Typo3 Gulp SCSS Autocompiler + JS Minifier
+# Typo3 Gulp SCSS Autocompiler to CSS + CSS Minifier + CSS Sourcemaps + JS Minifier
 
 This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. It also minifies the JS Files if needed. This script has to be put into your theme folder.
 
@@ -12,6 +12,12 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 *(Side Note: You can use `npm update` somewhat later on if you modify / add other dependencies manually to this script)*
 
 ## Console Usage (within the theme folder):
+
+Start all Build Tasks:
+`gulp build`
+
+Start all Watcher Tasks (Initializes also the Build task on start):
+`gulp watch`
 
 Convert Scss Files to CSS uncompressed (build once):
 `gulp sass:uncompressed`
@@ -27,11 +33,5 @@ Minify JS Files (build once):
 
 Minify JS Files (watcher / every time a file changes):
 `gulp js:watch`
-
-Start all Watcher Tasks:
-`gulp watch`
-
-Start all Build Tasks:
-`gulp build`
 
 *(Side Note: Alternatively you can use the native SASS Method if you do not prefer gulp or if there are some complications with gulp: `sass --watch Resources/Public/Scss:Resources/Public/Css` (uncompressed only))*

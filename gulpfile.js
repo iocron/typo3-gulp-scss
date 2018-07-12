@@ -12,41 +12,73 @@
 
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var rename = require("gulp-rename");
-var minify = require("gulp-babel-minify");
+// NPM PACKAGES
+let gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    rename = require("gulp-rename"),
+    minify = require("gulp-babel-minify"),
+    sourcemaps = require('gulp-sourcemaps'),
+    exec = require('child_process').exec;
 
-// SCSS / SASS
-gulp.task('sass:uncompressed', function () {
-  return gulp.src('./Resources/Public/Scss/**/*.scss')
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(gulp.dest('./Resources/Public/Css'));
+// GENERIC VARIABLES
+const   themePath = './Resources/Public/',
+        scssPath = themePath + 'Scss/',
+        jsPath = themePath + 'JavaScript/',
+        cssPath = themePath + 'Css/';
+
+// DEFAULT HELPER TASK
+gulp.task('default', function(cb){
+    exec('gulp --tasks-simple', function (err, stdout, stderr) {
+        console.log("All gulp parameters:");
+        console.log("(Usage Example: gulp build)");
+        console.log("-------------------");
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
 });
 
-gulp.task('sass:compressed', function () {
-  return gulp.src('./Resources/Public/Scss/**/*.scss')
-    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(rename({ suffix:".min" }))
-    .pipe(gulp.dest('./Resources/Public/Css'));
+// SCSS / SASS COMPILER & MINIFIER
+gulp.task('sass:uncompressed', function(done) {
+    gulp.src(scssPath + '**/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(cssPath));
+    done();
 });
 
-gulp.task('sass:watch', function () {
-  return gulp.watch('./Resources/Public/Scss/**/*.scss', ['sass:uncompressed', 'sass:compressed']);
+gulp.task('sass:compressed', function(done) {
+    gulp.src(themePath + '**/*.scss')
+        .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(rename({ suffix:".min" }))
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(cssPath));
+    done();
+});
+
+gulp.task('sass:watch', function(done) {
+    let watcher = gulp.watch(scssPath + '**/*.scss');
+    watcher.on('change', gulp.series('sass:uncompressed', 'sass:compressed'));
 });
 
 // JAVASCRIPT COMPRESSION
-gulp.task('js:compressed', function(){
-  return gulp.src(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'])
-    .pipe(minify())
-    .pipe(rename({ suffix:".min" }))
-    .pipe(gulp.dest('./Resources/Public/JavaScript'));
+gulp.task('js:compressed', function(done){
+    gulp.src([jsPath + '**/*.js', '!'+ jsPath +'**/*.min.js'])
+        .pipe(minify())
+        .pipe(rename({ suffix:".min" }))
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(jsPath));
+    done();
 });
 
-gulp.task('js:watch', function(){
-    return gulp.watch(['./Resources/Public/JavaScript/**/*.js', '!./Resources/Public/JavaScript/**/*.min.js'], ['js:compressed']);
+gulp.task('js:watch', function(done){
+    let watcher = gulp.watch([jsPath + '**/*.js', '!'+ jsPath +'**/*.min.js']);
+    watcher.on('change', gulp.series('js:compressed'));
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS
-gulp.task('watch', ['sass:watch', 'js:watch']);
-gulp.task('build', ['sass:uncompressed', 'sass:compressed', 'js:compressed']);
+gulp.task('build', gulp.parallel('sass:uncompressed', 'sass:compressed', 'js:compressed'));
+gulp.task('watch', gulp.parallel('build', 'sass:watch', 'js:watch'));

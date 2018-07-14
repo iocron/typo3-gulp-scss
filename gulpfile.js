@@ -20,11 +20,11 @@ let gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps');
 
 // GENERIC VARIABLES
-const exec = require('child_process').exec,
-      themePath = './Resources/Public/',
-      scssPath = themePath + 'Scss/',
-      jsPath = themePath + 'JavaScript/',
-      cssPath = themePath + 'Css/';
+const   exec = require('child_process').exec,
+        themePath = './Resources/Public/',
+        scssPath = themePath + 'Scss',
+        jsPath = themePath + 'JavaScript',
+        cssPath = themePath + 'Css';
 
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){
@@ -36,46 +36,45 @@ gulp.task('default', function(cb){
         console.log(stderr);
         cb(err);
     });
+    cb();
 });
 
 // SCSS / SASS COMPILER & MINIFIER
-gulp.task('sass:uncompressed', function(done) {
-    gulp.src(scssPath + '**/*.scss')
+gulp.task('sass:uncompressed', function(done){
+    gulp.src(scssPath + '/**/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(cssPath));
     done();
 });
 
-gulp.task('sass:compressed', function(done) {
-    gulp.src(themePath + '**/*.scss')
+gulp.task('sass:compressed', function(done){
+    gulp.src(scssPath + '/**/*.scss')
         .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(rename({ suffix:".min" }))
         .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(cssPath));
     done();
 });
 
-gulp.task('sass:watch', function(done) {
-    let watcher = gulp.watch(scssPath + '**/*.scss');
+gulp.task('sass:watch', function(done){
+    let watcher = gulp.watch(scssPath + '/**/*.scss');
     watcher.on('change', gulp.series('sass:uncompressed', 'sass:compressed'));
 });
 
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(done){
-    gulp.src([jsPath + '**/*.js', '!'+ jsPath +'**/*.min.js'])
+    gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js'])
         .pipe(minify())
         .pipe(rename({ suffix:".min" }))
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(jsPath));
     done();
 });
 
 gulp.task('js:watch', function(done){
-    let watcher = gulp.watch([jsPath + '**/*.js', '!'+ jsPath +'**/*.min.js']);
+    let watcher = gulp.watch([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js']);
     watcher.on('change', gulp.series('js:compressed'));
 });
 

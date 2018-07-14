@@ -1,24 +1,23 @@
 {
   "name": "typo3_gulp_scss",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Typo3 Gulp SCSS Autocompiler to CSS + CSS Minifier + CSS Sourcemaps + JS Minifier",
   "main": "gulpfile.js",
-  "dependencies": {
-    "gulp": "^4.0.0",
-    "gulp-babel-minify": "^0.4.3",
-    "gulp-rename": "^1.2.3",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iocron/typo3-gulp-scss"
+    "url": "git+ssh://git@bitbucket.org/hauerheinrich/hhthemepatriciosportevents.git"
   },
-  "author": "iocron",
-  "license": "MIT",
-  "homepage": "https://github.com/iocron/typo3-gulp-scss#readme"
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hauerheinrich/hhthemepatriciosportevents#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-babel-minify": "^0.4.3",
+    "gulp-rename": "^1.3.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4"
+  }
 }

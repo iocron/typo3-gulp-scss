@@ -25,13 +25,13 @@ Convert Scss Files to CSS uncompressed (build once):
 Convert Scss Files to CSS compressed (build once):
 `gulp sass:compressed`
 
-Convert Scss Files to CSS compressed + uncompressed (watcher / every time a file changes):
+Convert Scss Files to CSS compressed + uncompressed (watcher / every time a scss file changes):
 `gulp sass:watch`
 
 Minify JS Files (build once):
 `gulp js:compressed`
 
-Minify JS Files (watcher / every time a file changes):
+Minify JS Files (watcher / every time a js file changes):
 `gulp js:watch`
 
 *(Side Note: Alternatively you can use the native SASS Method if you do not prefer gulp or if there are some complications with gulp: `sass --watch Resources/Public/Scss:Resources/Public/Css` (uncompressed only))*

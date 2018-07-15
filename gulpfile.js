@@ -1,7 +1,7 @@
 /**
  * gulpfile.js
  *
- * Typo3 Gulp SCSS Autocompiler + JS Minifier
+ * Typo3 Gulp SCSS Autocompiler to CSS + CSS Minifier + CSS Sourcemaps + JS Minifier
  *
  * @author     Sebastian Pieczona
  * @company    ioCron

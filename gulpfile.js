@@ -17,7 +17,8 @@ let gulp = require('gulp'),
     sass = require('gulp-sass'),
     rename = require("gulp-rename"),
     minify = require("gulp-babel-minify"),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    commandExists = require('command-exists');
 
 // GENERIC VARIABLES
 const   exec = require('child_process').exec,
@@ -29,15 +30,40 @@ const   exec = require('child_process').exec,
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){
     exec('gulp --tasks-simple', function (err, stdout, stderr) {
-        console.log("All gulp parameters:");
-        console.log("(Usage Example: gulp build)");
-        console.log("-------------------");
+        console.log("\nAll gulp parameters:\n(Usage Example: \"gulp build\")\n-------------------");
         console.log(stdout);
         console.log(stderr);
         cb(err);
     });
-    cb();
 });
+
+// Installer / Setup - IDE Plugins
+gulp.task('install:atom-onsave', function(done){
+  commandExists('apm').then(function(command){
+    exec('apm install on-save --compatible', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        done(err);
+    });
+  }).catch(function(){
+    console.log("The Command \"apm\" (from Atom) was not found or is not accessible on your System.\nSkipped Implementation of the Auto-Save Functionality..");
+  });
+});
+
+gulp.task('install:vscode-onsave', function(done){
+  commandExists('code').then(function(command){
+    exec('code --install-extension wk-j.save-and-run', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        done(err);
+    });
+  }).catch(function(){
+    console.log("The Command \"code\" (from Visual Studio Code) was not found or is not accessible on your System.\nSkipped Implementation of the Auto-Save Functionality..");
+  });
+});
+
+// Installer / Setup - FULL SETUP
+gulp.task('setup', gulp.parallel('install:atom-onsave', 'install:vscode-onsave'));
 
 // SCSS / SASS COMPILER & MINIFIER
 gulp.task('sass:uncompressed', function(done){

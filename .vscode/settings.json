@@ -1,18 +1,18 @@
 {
     "saveAndRun": {
         "commands": [
-        {
-        "match": "\\.js$",
-        "cmd": "gulp js:compressed",
-        "useShortcut": false,
-        "silent": false
-        },
-        {
-            "match": "\\.scss$",
-            "cmd": "gulp sass:uncompressed sass:compressed",
-            "useShortcut": false,
-            "silent": false
-        }
+            {
+                "match": "\\.js$",
+                "cmd": "gulp js:compressed",
+                "useShortcut": false,
+                "silent": false
+            },
+            {
+                "match": "\\.scss$",
+                "cmd": "gulp sass:uncompressed sass:compressed",
+                "useShortcut": false,
+                "silent": false
+            }
         ]
-        }
+    }
 }

@@ -26,7 +26,9 @@ const   exec = require('child_process').exec,
         themePath = './Resources/Public/',
         scssPath = themePath + 'Scss',
         jsPath = themePath + 'JavaScript',
-        cssPath = themePath + 'Css';
+        cssPath = themePath + 'Css',
+        repoUrl = 'https://github.com/iocron/typo3-gulp-scss',
+        repoUrlRaw = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
 
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){
@@ -41,6 +43,8 @@ gulp.task('default', function(cb){
 // Installer / Setup - IDE Plugins
 gulp.task('install:atom-onsave', function(done){
   commandExists('apm').then(function(command){
+    download({ '.on-save.json': repoUrlRaw + '.on-save.json' }).pipe(gulp.dest("./"));
+    
     exec('apm install on-save --compatible', function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
@@ -70,12 +74,10 @@ gulp.task('setup', gulp.parallel('install:atom-onsave', 'install:vscode-onsave')
 
 // Self-Updater
 gulp.task('selfupdate', function(done){
-  let rawRepoUrl = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
   download({
-    'package.json': rawRepoUrl + 'package.json',
-    'package-lock.json': rawRepoUrl + 'package-lock.json',
-    '.on-save.json': rawRepoUrl + '.on-save.json',
-    'gulpfile.js': rawRepoUrl + 'gulpfile.js'
+    'package.json': repoUrlRaw + 'package.json',
+    'package-lock.json': repoUrlRaw + 'package-lock.json',
+    'gulpfile.js': repoUrlRaw + 'gulpfile.js'
   }).pipe(gulp.dest("./"));
   done();
 });

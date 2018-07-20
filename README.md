@@ -7,9 +7,8 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 1. Copy this script into your typo3 theme folder, then switch into your theme folder (console: `cd THEME_FOLDER`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 
-*(Side Note: The One-Liner Version to Install everything is `cd <yourThemeDirectory> && curl -O https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/gulpfile.js && npm init && npm install gulp gulp-sass gulp-rename gulp-babel-minify` after that you can use one of the new console commands below)*
-
-*(Side Note: You can use `npm update` somewhat later on if you modify / add other dependencies manually to this script)*
+## On Updates:
+1. If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies
 
 ## Console Usage (within the theme folder):
 
@@ -18,6 +17,15 @@ Start all Build Tasks:
 
 Start all Watcher Tasks (Initializes also the Build task on start):
 `gulp watch`
+
+Setup Script - Initializes IDE Plugins for Atom/VSCode for automatic builds & More:
+`gulp setups` (Please Restart your IDE after it)
+
+Setup Script for Atom - On-Save Plugin for automatic builds on save:
+`gulp install:atom-onsave` (Please Restart your IDE after it)
+
+Setup Script for VSCode - On-Save Plugin for automatic builds on save:
+`gulp install:vscode-onsave` (Please Restart your IDE after it)
 
 Convert Scss Files to CSS uncompressed (build once):
 `gulp sass:uncompressed`

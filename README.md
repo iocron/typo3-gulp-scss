@@ -27,6 +27,9 @@ Setup Script for Atom - On-Save Plugin for automatic builds on save:
 Setup Script for VSCode - On-Save Plugin for automatic builds on save:
 `gulp install:vscode-onsave` (Please Restart your IDE after it)
 
+Self-Updater - Updates this script through the Repository (e.g. if you don't/can't use git on your environment):
+`gulp selfupdate`
+
 Convert Scss Files to CSS uncompressed (build once):
 `gulp sass:uncompressed`
 

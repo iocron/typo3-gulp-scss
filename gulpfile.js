@@ -18,7 +18,8 @@ let gulp = require('gulp'),
     rename = require("gulp-rename"),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
-    commandExists = require('command-exists');
+    commandExists = require('command-exists'),
+    download = require("gulp-download-files");
 
 // GENERIC VARIABLES
 const   exec = require('child_process').exec,
@@ -29,22 +30,22 @@ const   exec = require('child_process').exec,
 
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){
-    exec('gulp --tasks-simple', function (err, stdout, stderr) {
-        console.log("\nAll gulp parameters:\n(Usage Example: \"gulp build\")\n-------------------");
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+  exec('gulp --tasks-simple', function (err, stdout, stderr) {
+    console.log("\nAll gulp parameters:\n(Usage Example: \"gulp build\")\n-------------------");
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });
 
 // Installer / Setup - IDE Plugins
 gulp.task('install:atom-onsave', function(done){
   commandExists('apm').then(function(command){
     exec('apm install on-save --compatible', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        console.log("Please restart your IDE so the Plugin can be correctly initialized.");
-        done(err);
+      console.log(stdout);
+      console.log(stderr);
+      console.log("Please restart your IDE so the Plugin can be correctly initialized.");
+      done(err);
     });
   }).catch(function(){
     console.log("The Command \"apm\" (from Atom) was not found or is not accessible on your System.\nSkipped Implementation of the Auto-Save Functionality..");
@@ -54,10 +55,10 @@ gulp.task('install:atom-onsave', function(done){
 gulp.task('install:vscode-onsave', function(done){
   commandExists('code').then(function(command){
     exec('code --install-extension wk-j.save-and-run', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        console.log("Please restart your IDE so the Plugin can be correctly initialized.");
-        done(err);
+      console.log(stdout);
+      console.log(stderr);
+      console.log("Please restart your IDE so the Plugin can be correctly initialized.");
+      done(err);
     });
   }).catch(function(){
     console.log("The Command \"code\" (from Visual Studio Code) was not found or is not accessible on your System (please read the docs if you want to use it in your vscode environment: https://code.visualstudio.com/docs/editor/command-line).\nSkipped Implementation of the Auto-Save Functionality..");
@@ -67,24 +68,36 @@ gulp.task('install:vscode-onsave', function(done){
 // Installer / Setup - FULL SETUP
 gulp.task('setup', gulp.parallel('install:atom-onsave', 'install:vscode-onsave'));
 
+// Self-Updater
+gulp.task('selfupdate', function(done){
+  let rawRepoUrl = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
+  download({
+    'package.json': rawRepoUrl + 'package.json',
+    'package-lock.json': rawRepoUrl + 'package-lock.json',
+    '.on-save.json': rawRepoUrl + '.on-save.json',
+    'gulpfile.js': rawRepoUrl + 'gulpfile.js'
+  }).pipe(gulp.dest("./"));
+  done();
+});
+
 // SCSS / SASS COMPILER & MINIFIER
 gulp.task('sass:uncompressed', function(done){
-    gulp.src(scssPath + '/**/*.scss')
-        .pipe(sass.sync().on('error', sass.logError))
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(cssPath));
-    done();
+  gulp.src(scssPath + '/**/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest(cssPath));
+  done();
 });
 
 gulp.task('sass:compressed', function(done){
-    gulp.src(scssPath + '/**/*.scss')
-        .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
-        .pipe(rename({ suffix:".min" }))
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(cssPath));
-    done();
+  gulp.src(scssPath + '/**/*.scss')
+    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(rename({ suffix:".min" }))
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest(cssPath));
+  done();
 });
 
 gulp.task('sass:watch', function(done){
@@ -94,16 +107,16 @@ gulp.task('sass:watch', function(done){
 
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(done){
-    gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js'])
-        .pipe(minify())
-        .pipe(rename({ suffix:".min" }))
-        .pipe(gulp.dest(jsPath));
-    done();
+  gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js'])
+    .pipe(minify())
+    .pipe(rename({ suffix:".min" }))
+    .pipe(gulp.dest(jsPath));
+  done();
 });
 
 gulp.task('js:watch', function(done){
-    let watcher = gulp.watch([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js']);
-    watcher.on('change', gulp.series('js:compressed'));
+  let watcher = gulp.watch([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js']);
+  watcher.on('change', gulp.series('js:compressed'));
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS

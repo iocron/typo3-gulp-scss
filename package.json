@@ -10,7 +10,8 @@
     "type": "git",
     "url": "git+ssh://git@github.com:iocron/typo3-gulp-scss.git"
   },
-  "author": "ioCron",
+  "author": "Sebastian Pieczona",
+  "company": "ioCron",
   "license": "MIT",
   "homepage": "https://github.com/iocron/typo3-gulp-scss",
   "dependencies": {

@@ -47,13 +47,25 @@ gulp.task('default', function(cb){
 // Installer / Setup - IDE Plugins
 gulp.task('install:atom-onsave', function(done){
   commandExists('apm').then(function(command){
-    download(repoUrlRaw + '.on-save.json').pipe(gulp.dest("./"));
+    fs.stat('.on-save.json', function(err, stat){
+      if(err == null){
+        // .. file exists already
+      } else if(err.code == 'ENOENT'){
+        download(repoUrlRaw + '.on-save.json').pipe(gulp.dest("./"));
+      } else {
+        console.log(err, stat);
+        done(err);
+      }
+    });
+
     exec('apm install on-save --compatible', function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
       console.log("Please restart your IDE so the Plugin can be correctly initialized.");
       done(err);
     });
+
+    done();
   }).catch(function(){
     console.log("The Command \"apm\" (from Atom) was not found or is not accessible on your System.\nSkipped Implementation of the Auto-Save Functionality..");
   });

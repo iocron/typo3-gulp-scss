@@ -26,47 +26,51 @@ Start all Build Tasks:
 gulp build
 ```
 
-Start all Watcher Tasks (Initializes also the Build task on start):
+Start all Watcher Tasks:
 
 ```console
+# (Initializes also the Build task on start)
 gulp watch
 ```
 
-Setup Script - Initializes IDE Plugins for Atom/VSCode for automatic builds & More:
+Setup All:
 
 ```console
+# - Initializes IDE Plugins for Atom/VSCode for automatic builds & More
+# (Please Restart your IDE after executing this)
 gulp setup
 ```
-*(Please Restart your IDE after this)*
 
-Setup Script for Atom - On-Save Plugin for automatic builds on save:
+Setup Script for Atom:
 
 ```console
+# On-Save Plugin for automatic builds on save (Atom)
+# (Please Restart your IDE after executing this)
 gulp install:atom-onsave
 ```
-*(Please Restart your IDE after this)*
 
-Setup Script for VSCode - On-Save Plugin for automatic builds on save:
+Setup Script for VSCode:
 
 ```console
+# On-Save Plugin for automatic builds on save (VSCode)
+# (Please Restart your IDE after this)
 gulp install:vscode-onsave
 ```
-*(Please Restart your IDE after this)*
 
 Symlinks Setup
 
-*(Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources)*
-
 ```console
+# (Creates symlinks for faster theme development, e.g. \<theme\>/Resources/Images to fileadmin/\<theme\>/themeResources)
 gulp symlinks
 ```
 
-Self-Updater - Updates this script through the Repository (e.g. if you don't/can't use git on your environment):
+Self-Updater - Updates this script through the Repository:
 
 ```console
+# - Good if you don't want to / can't use git in your environment
+# (the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)
 gulp selfupdate
 ```
-*(the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)*
 
 Convert Scss Files to CSS uncompressed (build once):
 

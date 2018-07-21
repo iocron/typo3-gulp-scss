@@ -43,8 +43,7 @@ gulp.task('default', function(cb){
 // Installer / Setup - IDE Plugins
 gulp.task('install:atom-onsave', function(done){
   commandExists('apm').then(function(command){
-    download({ '.on-save.json': repoUrlRaw + '.on-save.json' }).pipe(gulp.dest("./"));
-
+    download(repoUrlRaw + '.on-save.json').pipe(gulp.dest("./"));
     exec('apm install on-save --compatible', function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);

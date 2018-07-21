@@ -38,6 +38,7 @@ Setup All:
 ```bash
 # Initializes IDE Plugins for Atom/VSCode for automatic builds & More
 # (Please Restart your IDE after executing this)
+
 gulp setup
 ```
 
@@ -46,6 +47,7 @@ Setup Script for Atom:
 ```bash
 # On-Save Plugin for automatic builds on save (Atom)
 # (Please Restart your IDE after executing this)
+
 gulp install:atom-onsave
 ```
 
@@ -53,7 +55,8 @@ Setup Script for VSCode:
 
 ```bash
 # On-Save Plugin for automatic builds on save (VSCode)
-# (Please Restart your IDE after this)
+# (Please Restart your IDE after executing this)
+
 gulp install:vscode-onsave
 ```
 
@@ -69,6 +72,7 @@ Self-Updater - Updates this script through the Repository:
 ```bash
 # Good if you don't want to / can't use git in your environment
 # (the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)
+
 gulp selfupdate
 ```
 

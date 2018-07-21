@@ -19,7 +19,7 @@ let gulp = require('gulp'),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
     commandExists = require('command-exists'),
-    download = require("gulp-download-files");
+    download = require("gulp-download-stream");
 
 // GENERIC VARIABLES
 const   exec = require('child_process').exec,
@@ -74,11 +74,12 @@ gulp.task('setup', gulp.parallel('install:atom-onsave', 'install:vscode-onsave')
 
 // Self-Updater
 gulp.task('selfupdate', function(done){
-  download({
-    'package.json': repoUrlRaw + 'package.json',
-    'package-lock.json': repoUrlRaw + 'package-lock.json',
-    'gulpfile.js': repoUrlRaw + 'gulpfile.js'
-  }).pipe(gulp.dest("./"));
+  download([
+    repoUrlRaw + 'package.json',
+    repoUrlRaw + 'package-lock.json',
+    repoUrlRaw + 'gulpfile.js'
+  ])
+  .pipe(gulp.dest("./"));
 
   exec('npm update', function(err, stdout, stderr){
     console.log("npm update..\n", err, stdout, stderr);

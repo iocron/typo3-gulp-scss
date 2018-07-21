@@ -36,7 +36,8 @@ gulp watch
 Setup All:
 
 ```bash
-# Initializes IDE Plugins for Atom/VSCode for automatic builds & More
+# Initializes IDE Plugins for Atom/VSCode for automatic builds. After installing it, you won't need those console build/watch
+# commands anymore, because every time a file is beeing saved by Atom/VSCode the code will get build automatically
 # (Please Restart your IDE after executing this)
 
 gulp setup
@@ -46,6 +47,8 @@ Setup Script for Atom:
 
 ```bash
 # On-Save Plugin for automatic builds on save (Atom)
+# So every time a file is saved the plugin will automatically execute the build command
+# You can edit the .on-save.json file for further adjustments
 # (Please Restart your IDE after executing this)
 
 gulp install:atom-onsave
@@ -55,6 +58,8 @@ Setup Script for VSCode:
 
 ```bash
 # On-Save Plugin for automatic builds on save (VSCode)
+# So every time a file is saved the plugin will automatically execute the build command
+# You can edit the .vscode/settings.json file for further adjustments
 # (Please Restart your IDE after executing this)
 
 gulp install:vscode-onsave

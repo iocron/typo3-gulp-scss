@@ -1,6 +1,6 @@
 # Typo3 Gulp SCSS Autocompiler to CSS + CSS Minifier + CSS Sourcemaps + JS Minifier
 
-This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. It also minifies the JS Files if needed. This script has to be put into your theme folder.
+This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. It also minifies the JS Files if needed (into the same folder with the .min suffix). There is also a setup option to automate the build tasks with IDE Plugins for Atom/Vscode in combination with this script. This script has to be put into your typo3 theme folder (e.g. typo3conf/ext/<yourTheme>).
 
 ## Install:
 
@@ -29,27 +29,28 @@ Setup Script - Initializes IDE Plugins for Atom/VSCode for automatic builds & Mo
 ```console
 gulp setup
 ```
-*(Please Restart your IDE after it)*
+*(Please Restart your IDE after this)*
 
 Setup Script for Atom - On-Save Plugin for automatic builds on save:
 
 ```console
 gulp install:atom-onsave
 ```
-*(Please Restart your IDE after it)*
+*(Please Restart your IDE after this)*
 
 Setup Script for VSCode - On-Save Plugin for automatic builds on save:
 
 ```console
 gulp install:vscode-onsave
 ```
-*(Please Restart your IDE after it)*
+*(Please Restart your IDE after this)*
 
 Self-Updater - Updates this script through the Repository (e.g. if you don't/can't use git on your environment):
 
 ```console
 gulp selfupdate
 ```
+*(the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)*
 
 Convert Scss Files to CSS uncompressed (build once):
 
@@ -80,5 +81,3 @@ Minify JS Files (watcher / every time a js file changes):
 ```console
 gulp js:watch
 ```
-
-*(Side Note: Alternatively you can use the native SASS Method if you do not prefer gulp or if there are some complications with gulp: `sass --watch Resources/Public/Scss:Resources/Public/Css` (uncompressed only))*

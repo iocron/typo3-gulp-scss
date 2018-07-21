@@ -23,13 +23,15 @@ If you have updated to a newer Version of typo3-gulp-scss from a previous instal
 Start all Build Tasks:
 
 ```bash
+# Compiles / Builds *.scss and *.js files, then minifies the css files and creates css source maps
 gulp build
 ```
 
 Start all Watcher Tasks:
 
 ```bash
-# (Initializes also the Build task on start)
+# Initializes also the Build task on start and watches relevant
+# files (.scss, .js) on change, then re-builds the corresponding files
 gulp watch
 ```
 
@@ -43,7 +45,7 @@ Setup All:
 gulp setup
 ```
 
-Setup Script for Atom:
+Install Script for Atom:
 
 ```bash
 # On-Save Plugin for automatic builds on save (Atom)
@@ -54,7 +56,7 @@ Setup Script for Atom:
 gulp install:atom-onsave
 ```
 
-Setup Script for VSCode:
+Install Script for VSCode:
 
 ```bash
 # On-Save Plugin for automatic builds on save (VSCode)
@@ -68,7 +70,7 @@ gulp install:vscode-onsave
 Symlinks Setup
 
 ```bash
-# (Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources)
+# Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources
 gulp symlinks
 ```
 

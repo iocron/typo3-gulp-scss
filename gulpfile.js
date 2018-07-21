@@ -82,7 +82,11 @@ gulp.task('selfupdate', function(done){
   .pipe(gulp.dest("./"));
 
   exec('npm update', function(err, stdout, stderr){
-    console.log("npm update..\n", err, stdout, stderr);
+    if(err == null){
+        console.log("npm update.. There is nothing to update.");
+    } else {
+        console.log("npm update.. ", err, stdout, stderr);
+    }
   });
 
   done();

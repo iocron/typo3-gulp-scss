@@ -23,7 +23,7 @@ If you have updated to a newer Version of typo3-gulp-scss from a previous instal
 Start all Build Tasks:
 
 ```bash
-# Compiles / Builds *.scss and *.js files, then minifies the css files and creates css source maps
+# Compiles / Builds *.scss to css files, then minifies js and css files and creates css source maps
 gulp build
 ```
 

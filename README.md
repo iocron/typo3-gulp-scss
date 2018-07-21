@@ -60,7 +60,7 @@ gulp install:vscode-onsave
 Symlinks Setup
 
 ```console
-# (Creates symlinks for faster theme development, e.g. \<theme\>/Resources/Images to fileadmin/\<theme\>/themeResources)
+# (Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources)
 gulp symlinks
 ```
 

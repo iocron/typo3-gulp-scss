@@ -8,7 +8,7 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 
 ## On Updates:
-1. If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies
+1. If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp selfupdate` if your typo3-gulp-scss isn't versioned anyway (e.g. if you can't / haven't used git to clone this project))
 
 ## Console Usage (within the theme folder):
 

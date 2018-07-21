@@ -10,7 +10,7 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 ## On Updates:
 1. If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp selfupdate` if your typo3-gulp-scss isn't versioned anyway (e.g. if you can't / haven't used git to clone this project))
 
-## Console Usage (within the theme folder):
+## Console Usage (somewhere inside the theme folder):
 
 Start all Build Tasks:
 

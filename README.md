@@ -11,7 +11,7 @@ If Node/NPM is not installed on your system then please install it: https://node
 
 ## Install:
 
-1. Copy this script into your typo3 theme folder, then switch into your theme folder (console: `cd THEME_FOLDER`)
+1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd THEME_FOLDER`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 
 ## On Updates:
@@ -22,28 +22,28 @@ If you have updated to a newer Version of typo3-gulp-scss from a previous instal
 
 Start all Build Tasks:
 
-```console
+```bash
 gulp build
 ```
 
 Start all Watcher Tasks:
 
-```console
+```bash
 # (Initializes also the Build task on start)
 gulp watch
 ```
 
 Setup All:
 
-```console
-# - Initializes IDE Plugins for Atom/VSCode for automatic builds & More
+```bash
+# Initializes IDE Plugins for Atom/VSCode for automatic builds & More
 # (Please Restart your IDE after executing this)
 gulp setup
 ```
 
 Setup Script for Atom:
 
-```console
+```bash
 # On-Save Plugin for automatic builds on save (Atom)
 # (Please Restart your IDE after executing this)
 gulp install:atom-onsave
@@ -51,7 +51,7 @@ gulp install:atom-onsave
 
 Setup Script for VSCode:
 
-```console
+```bash
 # On-Save Plugin for automatic builds on save (VSCode)
 # (Please Restart your IDE after this)
 gulp install:vscode-onsave
@@ -59,45 +59,45 @@ gulp install:vscode-onsave
 
 Symlinks Setup
 
-```console
+```bash
 # (Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources)
 gulp symlinks
 ```
 
 Self-Updater - Updates this script through the Repository:
 
-```console
-# - Good if you don't want to / can't use git in your environment
+```bash
+# Good if you don't want to / can't use git in your environment
 # (the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)
 gulp selfupdate
 ```
 
 Convert Scss Files to CSS uncompressed (build once):
 
-```console
+```bash
 gulp sass:uncompressed
 ```
 
 Convert Scss Files to CSS compressed (build once):
 
-```console
+```bash
 gulp sass:compressed
 ```
 
 Convert Scss Files to CSS compressed + uncompressed (watcher / every time a scss file changes):
 
-```console
+```bash
 gulp sass:watch
 ```
 
 Minify JS Files (build once):
 
-```console
+```bash
 gulp js:compressed
 ```
 
 Minify JS Files (watcher / every time a js file changes):
 
-```console
+```bash
 gulp js:watch
 ```

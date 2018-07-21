@@ -44,7 +44,7 @@ gulp.task('default', function(cb){
 gulp.task('install:atom-onsave', function(done){
   commandExists('apm').then(function(command){
     download({ '.on-save.json': repoUrlRaw + '.on-save.json' }).pipe(gulp.dest("./"));
-    
+
     exec('apm install on-save --compatible', function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
@@ -79,6 +79,11 @@ gulp.task('selfupdate', function(done){
     'package-lock.json': repoUrlRaw + 'package-lock.json',
     'gulpfile.js': repoUrlRaw + 'gulpfile.js'
   }).pipe(gulp.dest("./"));
+
+  exec('npm update', function(err, stdout, stderr){
+    console.log("npm update..\n", err, stdout, stderr);
+  });
+
   done();
 });
 

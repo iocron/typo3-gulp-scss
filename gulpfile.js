@@ -19,14 +19,18 @@ let gulp = require('gulp'),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
     commandExists = require('command-exists'),
-    download = require("gulp-download-stream");
+    download = require("gulp-download-stream"),
+    fs = require("fs"),
+    path = require("path");
 
 // GENERIC VARIABLES
 const   exec = require('child_process').exec,
         themePath = './Resources/Public/',
+        themeName = path.basename(__dirname),
         scssPath = themePath + 'Scss',
         jsPath = themePath + 'JavaScript',
         cssPath = themePath + 'Css',
+        imgPath = themePath + 'Images',
         repoUrl = 'https://github.com/iocron/typo3-gulp-scss',
         repoUrlRaw = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
 
@@ -133,3 +137,22 @@ gulp.task('js:watch', function(done){
 // GLOBAL WATCHER / BUILD COMMANDS
 gulp.task('build', gulp.parallel('sass:uncompressed', 'sass:compressed', 'js:compressed'));
 gulp.task('watch', gulp.parallel('build', 'sass:watch', 'js:watch'));
+
+// CREATE GENERIC THEME SYMLINKS
+gulp.task('symlinks', function(done){
+    fs.realpath('../../../fileadmin/' + themeName, function(err, resolvedPath){
+        if(err) { console.log(err); }
+        console.log("symlink from: ", resolvedPath);
+
+        fs.realpath(imgPath, function(err2, resolvedImgPath){
+            if(err2) { console.log(err2); }
+            console.log("symlink to: ", resolvedImgPath);
+
+            fs.symlink(resolvedImgPath, resolvedPath + '/themeResources', 'dir', function(err){
+                if(err2) { console.log(err); }
+            });
+        });
+    });
+
+    done();
+});

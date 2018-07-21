@@ -54,6 +54,7 @@ gulp install:vscode-onsave
 *(Please Restart your IDE after this)*
 
 Symlinks Setup
+
 *(Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources)*
 
 ```console

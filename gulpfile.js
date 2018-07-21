@@ -24,15 +24,15 @@ let gulp = require('gulp'),
     path = require("path");
 
 // GENERIC VARIABLES
-const   exec = require('child_process').exec,
-        themePath = './Resources/Public/',
-        themeName = path.basename(__dirname),
-        scssPath = themePath + 'Scss',
-        jsPath = themePath + 'JavaScript',
-        cssPath = themePath + 'Css',
-        imgPath = themePath + 'Images',
-        repoUrl = 'https://github.com/iocron/typo3-gulp-scss',
-        repoUrlRaw = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
+const exec = require('child_process').exec,
+      themePath = './Resources/Public/',
+      themeName = path.basename(__dirname),
+      scssPath = themePath + 'Scss',
+      jsPath = themePath + 'JavaScript',
+      cssPath = themePath + 'Css',
+      imgPath = themePath + 'Images',
+      repoUrl = 'https://github.com/iocron/typo3-gulp-scss',
+      repoUrlRaw = 'https://raw.githubusercontent.com/iocron/typo3-gulp-scss/master/';
 
 // DEFAULT HELPER TASK
 gulp.task('default', function(cb){

@@ -2,13 +2,29 @@
 
 This Script creates from all Resources/Public/Scss/\*.scss Files corresponding CSS Files in Resources/Public/Css/ as minified + uncompressed versions. It also minifies the JS Files if needed (into the same folder with the .min suffix). There is also a setup option to automate the build tasks with IDE Plugins for Atom/Vscode in combination with this script. This script has to be put into your typo3 theme folder (e.g. typo3conf/ext/<yourTheme>).
 
+-------
+
+## System Requirements:
+
+- Node 8.x or higher (check with `node --version`)
+- NPM 5.6 or higher (check with `npm --version`)
+
+If Node/NPM is not installed on your system then please install it: https://nodejs.org/en/download/
+
+-------
+
 ## Install:
 
 1. Copy this script into your typo3 theme folder, then switch into your theme folder (console: `cd THEME_FOLDER`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 
+-------
+
 ## On Updates:
-1. If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp selfupdate` if your typo3-gulp-scss isn't versioned anyway (e.g. if you can't / haven't used git to clone this project))
+
+If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp selfupdate` if your typo3-gulp-scss isn't versioned anyway (e.g. if you don't want to / haven't used git to clone this project))
+
+-------
 
 ## Console Usage (somewhere inside the theme folder):
 

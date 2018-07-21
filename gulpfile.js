@@ -83,7 +83,7 @@ gulp.task('selfupdate', function(done){
 
   exec('npm update', function(err, stdout, stderr){
     if(err == null){
-        console.log("npm update.. There is nothing to update.");
+        console.log("npm update.. Dependencies seem to be up to date.");
     } else {
         console.log("npm update.. ", err, stdout, stderr);
     }

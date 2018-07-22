@@ -112,8 +112,8 @@ gulp.task('setup:symlinks', function(done){
 // SETUP - FULL SETUP
 gulp.task('setup', gulp.series('install:onsave', 'setup:symlinks'));
 
-// Self-Updater
-gulp.task('selfupdate', function(done){
+// UPGRADE / SELF-UPDATER
+gulp.task('upgrade', function(done){
   download([
     repoUrlRaw + 'package.json',
     repoUrlRaw + 'package-lock.json',

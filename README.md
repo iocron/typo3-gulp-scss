@@ -17,7 +17,7 @@ If Node/NPM is not installed on your system then please install it: https://node
 
 ## On Updates:
 
-If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp selfupdate` if your typo3-gulp-scss isn't versioned anyway (e.g. if you don't want to / haven't used git to clone this project))
+If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp upgrade` if your typo3-gulp-scss isn't versioned anyway (e.g. if you don't want to / haven't used git to clone this project))
 
 ## Console Usage (somewhere inside the theme folder):
 
@@ -25,6 +25,7 @@ Start all Build Tasks:
 
 ```bash
 # Compiles / Builds *.scss to css files, then minifies js and css files and creates css source maps
+
 gulp build
 ```
 
@@ -33,6 +34,7 @@ Start all Watcher Tasks:
 ```bash
 # Initializes also the Build task on start and watches relevant
 # files (.scss, .js) on change, then re-builds the corresponding files
+
 gulp watch
 ```
 
@@ -79,16 +81,17 @@ Setup - Symlinks
 
 ```bash
 # Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources
+
 gulp setup:symlinks
 ```
 
-Self-Updater - Updates this script through the Repository:
+Upgrade / Self-Updater - Upgrades this script through the Repository:
 
 ```bash
 # Good if you don't want to / can't use git in your environment
-# (the selfupdate will override/update gulpfile.js, package.json, package-lock.json and will start npm update)
+# (the upgrade will override/update gulpfile.js, package.json, package-lock.json and will start npm update)
 
-gulp selfupdate
+gulp upgrade
 ```
 
 Convert Scss Files to CSS uncompressed (build once):

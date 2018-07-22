@@ -6,13 +6,13 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 
 - Node 8.x or higher (check with `node --version`)
 - NPM 5.6 or higher (check with `npm --version`)
-- Gulp CLI (you can simply install it with: `npm install gulp-cli -g` if you have npm installed already)
+- Gulp CLI (you can simply install it with: `npm install gulp-cli -g` if you have node/npm installed already)
 
 If Node/NPM is not installed on your system then please install it: https://nodejs.org/en/download/
 
 ## Install:
 
-1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd \<myTheme\>`)
+1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd <myTheme>`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 3. Type in `gulp` for all available commands (for more information see further below)
 4. (Optionally) Setup your dev environment if you have atom or vscode installed: `gulp setup`
@@ -40,15 +40,24 @@ Start all Watcher Tasks:
 gulp watch
 ```
 
-Setup All:
+Setup - All:
 
 ```bash
 # Initializes IDE Plugins for Atom/VSCode for automatic builds. After installing it, you won't need those console build/watch
 # commands anymore, because every time a relevant file is beeing saved by Atom/VSCode the code will get build automatically
 # This script will also create some symlinks for easier/faster theme resources handling (see the command gulp setup:symlinks)
+# This task will execute: setup:symlinks, install:onsave-atom, install:onsave-vscode
 # (Please Restart your IDE after executing this)
 
 gulp setup
+```
+
+Setup - Symlinks
+
+```bash
+# Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources
+
+gulp setup:symlinks
 ```
 
 Install Script for Atom:
@@ -77,14 +86,6 @@ Install Script for VSCode + Atom:
 
 ```bash
 gulp install:onsave
-```
-
-Setup - Symlinks
-
-```bash
-# Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources
-
-gulp setup:symlinks
 ```
 
 Upgrade / Self-Updater - Upgrades this script through the Repository:

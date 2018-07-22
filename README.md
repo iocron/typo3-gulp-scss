@@ -12,12 +12,14 @@ If Node/NPM is not installed on your system then please install it: https://node
 
 ## Install:
 
-1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd THEME_FOLDER`)
+1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd \<myTheme\>`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
+3. Type in `gulp` for all available commands (for more information see further below)
+4. (Optionally) Setup your dev environment if you have atom or vscode installed: `gulp setup`
 
-## On Updates:
+## On Updates / Upgrades:
 
-If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp upgrade` if your typo3-gulp-scss isn't versioned anyway (e.g. if you don't want to / haven't used git to clone this project))
+If you have updated to a newer Version of typo3-gulp-scss from a previous installation, then please use `npm update` to make sure to be up to date with your dependencies (or use `gulp upgrade` instead if your typo3-gulp-scss isn't versioned anyway (e.g. if you don't want to / haven't used git to clone this project))
 
 ## Console Usage (somewhere inside the theme folder):
 

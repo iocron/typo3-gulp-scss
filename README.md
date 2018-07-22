@@ -6,6 +6,7 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 
 - Node 8.x or higher (check with `node --version`)
 - NPM 5.6 or higher (check with `npm --version`)
+- Gulp CLI (you can simply install it with: `npm install gulp-cli -g` if you have npm installed already)
 
 If Node/NPM is not installed on your system then please install it: https://nodejs.org/en/download/
 
@@ -40,6 +41,7 @@ Setup All:
 ```bash
 # Initializes IDE Plugins for Atom/VSCode for automatic builds. After installing it, you won't need those console build/watch
 # commands anymore, because every time a relevant file is beeing saved by Atom/VSCode the code will get build automatically
+# This script will also create some symlinks for easier/faster theme resources handling (see the command gulp setup:symlinks)
 # (Please Restart your IDE after executing this)
 
 gulp setup
@@ -53,7 +55,7 @@ Install Script for Atom:
 # You can edit the .on-save.json file for further adjustments
 # (Please Restart your IDE after executing this)
 
-gulp install:atom-onsave
+gulp install:onsave-atom
 ```
 
 Install Script for VSCode:
@@ -64,14 +66,20 @@ Install Script for VSCode:
 # You can edit the .vscode/settings.json file for further adjustments
 # (Please Restart your IDE after executing this)
 
-gulp install:vscode-onsave
+gulp install:onsave-vscode
 ```
 
-Symlinks Setup
+Install Script for VSCode + Atom:
+
+```bash
+gulp install:onsave
+```
+
+Setup - Symlinks
 
 ```bash
 # Creates symlinks for faster theme development, e.g. <theme>/Resources/Images to fileadmin/<theme>/themeResources
-gulp symlinks
+gulp setup:symlinks
 ```
 
 Self-Updater - Updates this script through the Repository:

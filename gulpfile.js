@@ -19,8 +19,10 @@ let gulp = require('gulp'),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
     commandExists = require('command-exists'),
-    download = require("gulp-download-stream"),
-    fs = require("fs"),
+    download = require("gulp-download-stream");
+
+// NATIVE NODE MODULES
+let fs = require("fs"),
     path = require("path");
 
 // GENERIC VARIABLES
@@ -44,8 +46,8 @@ gulp.task('default', function(cb){
   });
 });
 
-// Installer / Setup - IDE Plugins
-gulp.task('install:atom-onsave', function(done){
+// INSTALLER - IDE Plugins for Atom
+gulp.task('install:onsave-atom', function(done){
   commandExists('apm').then(function(command){
     fs.stat('.on-save.json', function(err, stat){
       if(err == null){
@@ -71,7 +73,8 @@ gulp.task('install:atom-onsave', function(done){
   });
 });
 
-gulp.task('install:vscode-onsave', function(done){
+// INSTALLER - IDE Plugins for VSCode
+gulp.task('install:onsave-vscode', function(done){
   commandExists('code').then(function(command){
     exec('code --install-extension wk-j.save-and-run', function (err, stdout, stderr) {
       console.log(stdout);
@@ -84,8 +87,30 @@ gulp.task('install:vscode-onsave', function(done){
   });
 });
 
-// Installer / Setup - FULL SETUP
-gulp.task('setup', gulp.parallel('install:atom-onsave', 'install:vscode-onsave'));
+// INSTALLER - IDE Plugins for ATOM AND VSCODE
+gulp.task('install:onsave', gulp.parallel('install:onsave-atom', 'install:onsave-vscode'));
+
+// SETUP SYMLINKS (create generic theme symlinks)
+gulp.task('setup:symlinks', function(done){
+    fs.realpath('../../../fileadmin/' + themeName, function(err, resolvedPath){
+        if(err) { console.log(err); }
+        console.log("symlink from: ", resolvedPath);
+
+        fs.realpath(imgPath, function(err2, resolvedImgPath){
+            if(err2) { console.log(err2); }
+            console.log("symlink to: ", resolvedImgPath);
+
+            fs.symlink(resolvedImgPath, resolvedPath + '/themeResources', 'dir', function(err){
+                if(err2) { console.log(err); }
+            });
+        });
+    });
+
+    done();
+});
+
+// SETUP - FULL SETUP
+gulp.task('setup', gulp.series('install:onsave', 'setup:symlinks'));
 
 // Self-Updater
 gulp.task('selfupdate', function(done){
@@ -149,22 +174,3 @@ gulp.task('js:watch', function(done){
 // GLOBAL WATCHER / BUILD COMMANDS
 gulp.task('build', gulp.parallel('sass:uncompressed', 'sass:compressed', 'js:compressed'));
 gulp.task('watch', gulp.parallel('build', 'sass:watch', 'js:watch'));
-
-// CREATE GENERIC THEME SYMLINKS
-gulp.task('symlinks', function(done){
-    fs.realpath('../../../fileadmin/' + themeName, function(err, resolvedPath){
-        if(err) { console.log(err); }
-        console.log("symlink from: ", resolvedPath);
-
-        fs.realpath(imgPath, function(err2, resolvedImgPath){
-            if(err2) { console.log(err2); }
-            console.log("symlink to: ", resolvedImgPath);
-
-            fs.symlink(resolvedImgPath, resolvedPath + '/themeResources', 'dir', function(err){
-                if(err2) { console.log(err); }
-            });
-        });
-    });
-
-    done();
-});

@@ -15,7 +15,7 @@ If Node/NPM is not installed on your system then please install it: https://node
 1. Copy this script into your typo3 theme folder, then switch into your theme folder (`cd <myTheme>`)
 2. Initialize the project / dependencies and install gulp + dependencies with: `npm install`
 3. Type in `gulp` for all available commands (for more information see further below)
-4. (Optionally) Setup your dev environment if you have atom or vscode installed: `gulp setup`
+4. (Optional) Setup your dev environment if you have atom or vscode installed: `gulp setup`
 
 ## On Updates / Upgrades:
 

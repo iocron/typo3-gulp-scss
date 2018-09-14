@@ -74,15 +74,22 @@ gulp install:onsave-atom
 Install Script for VSCode:
 
 ```bash
-# On-Save Plugin for automatic builds on save (VSCode)
+# On-Save Plugin for automatic builds on save
+# (https://marketplace.visualstudio.com/items?itemName=wk-j.save-and-run)
 # So every time a relevant file is saved the plugin will automatically execute the build command
 # You can edit the .vscode/settings.json file for further adjustments
 # (Please Restart your IDE after executing this)
 
 gulp install:onsave-vscode
+
+# Or if you want autostart tasks.json and/or launch.json on startup VSCode
+# (https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch)
+
+gulp install:autolaunch
+
 ```
 
-Install Script for VSCode + Atom:
+Install Script for VSCode + Atom (onsave-vscode + onsave-atom):
 
 ```bash
 gulp install:onsave

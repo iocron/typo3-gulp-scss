@@ -89,7 +89,7 @@ gulp.task('install:onsave-vscode', function(done){
 });
 
 // install - VSCode Plugin: https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch
-gulp.task('install:autolaunch', function(done){
+gulp.task('install:autolaunch-vscode', function(done){
     commandExists('code').then(function(command){
       exec('code --install-extension philfontaine.autolaunch', function (err, stdout, stderr) {
         console.log(stdout);

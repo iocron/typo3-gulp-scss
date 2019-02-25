@@ -176,7 +176,11 @@ gulp.task('sass:watch', function(done){
 gulp.task('js:compressed', function(done){
   gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js'])
     .pipe(sourcemaps.init())
-    .pipe(minify())
+    .pipe(minify({
+        builtIns: false,
+        evaluate: false,
+        mangle: false
+    }))
     .pipe(rename({ suffix:".min" }))
     .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(jsPath));

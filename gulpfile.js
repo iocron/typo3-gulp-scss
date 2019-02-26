@@ -152,7 +152,7 @@ gulp.task('sass:uncompressed', function(done){
   gulp.src(scssPath + '/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass.sync().on('error', sass.logError))
-    .pipe(sourcemaps.write("."))
+    .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(cssPath));
   done();
 });

@@ -195,18 +195,22 @@ gulp.task('js:watch', function(done){
 
 // GIT FTP DEPLOYER
 gulp.task('gitftp', function(done){
-  const giftpConfig = './giftp.json';
-
-  // Check if file exists
-  fs.access(giftpConfig, fs.F_OK, (err) => {
-    if(err){
-      console.error(err);
-      console.log("Please configure giftp.json");
+  fs.stat('giftp.json', function(err, stat){ // Check if giftp.json exists
+    if(err == null){
+      giftp.run();
+    } else if(err.code == 'ENOENT'){
+      download(repoUrlRaw + '.giftp.json')
+        .pipe(rename("giftp.json"))
+        .pipe(gulp.dest("./"))
+        .on("end", function(){
+          console.log("\x1b[31m", "WARNING: Please configure giftp.json");
+          done();
+        });
+    } else {
+      console.log(err, stat);
       done(err);
     }
-    giftp.run();
-    done();
-  })
+  });
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS

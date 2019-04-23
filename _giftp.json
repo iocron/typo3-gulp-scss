@@ -1,0 +1,9 @@
+{
+  "gitftp": {
+    "local": "/localPath/",
+    "remote": "/remotePath/",
+    "ftp": "mydomain.com",
+    "login": "mylogin",
+    "password": "mypassword"
+  }
+}

@@ -19,7 +19,8 @@ let gulp = require('gulp'),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
     commandExists = require('command-exists'),
-    download = require("gulp-download-stream");
+    download = require("gulp-download-stream"),
+    giftp = require('giftp');
 
 // NATIVE NODE MODULES
 let fs = require("fs"),
@@ -190,6 +191,22 @@ gulp.task('js:compressed', function(done){
 gulp.task('js:watch', function(done){
   let watcher = gulp.watch([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js']);
   watcher.on('change', gulp.series('js:compressed'));
+});
+
+// GIT FTP DEPLOYER
+gulp.task('gitftp', function(done){
+  const giftpConfig = './giftp.json';
+
+  // Check if file exists
+  fs.access(giftpConfig, fs.F_OK, (err) => {
+    if(err){
+      console.error(err);
+      console.log("Please configure giftp.json");
+      done(err);
+    }
+    giftp.run();
+    done();
+  })
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS

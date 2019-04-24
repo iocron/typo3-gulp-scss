@@ -25,6 +25,7 @@ coverage
 
 # Git FTP
 giftp.json
+.giftp
 
 # Bower dependency directory (https://bower.io/)
 bower_components

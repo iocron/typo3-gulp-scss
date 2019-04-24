@@ -198,6 +198,7 @@ gulp.task('gitftp', function(done){
   fs.stat('giftp.json', function(err, stat){ // Check if giftp.json exists
     if(err == null){
       giftp.run();
+      done();
     } else if(err.code == 'ENOENT'){
       download(repoUrlRaw + '.giftp.json')
         .pipe(rename("giftp.json"))

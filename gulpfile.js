@@ -107,26 +107,52 @@ gulp.task('install:autolaunch-vscode', function(done){
 gulp.task('install:onsave', gulp.parallel('install:onsave-atom', 'install:onsave-vscode'));
 
 // SETUP SYMLINKS (create generic theme symlinks)
-gulp.task('setup:symlinks', function(done){
-    fs.realpath('../../../fileadmin/' + themeName, function(err, resolvedPath){
-        if(err) { console.log(err); }
-        console.log("symlink from: ", resolvedPath);
+gulp.task('setup:symlinks', function(done) {
+  fs.realpath('../../../fileadmin/', function(err, resolvedPath) {
+      if(err) { console.log(err); }
+      console.log("symlink from: ", resolvedPath);
 
-        fs.realpath(imgPath, function(err2, resolvedImgPath){
-            if(err2) { console.log(err2); }
-            console.log("symlink to: ", resolvedImgPath);
+      fs.realpath(imgPath, function(errRealPath1, resolvedImgPath) {
+          if(errRealPath1) { console.log(errRealPath1); }
+          console.log("symlink to: ", resolvedImgPath);
+          const targetDir = resolvedPath + '/' + themeName;
 
-            fs.symlink(resolvedImgPath, resolvedPath + '/themeResources', 'dir', function(err){
-                if(err2) { console.log(err); }
-            });
-        });
-    });
+          if (!fs.existsSync(targetDir)) {
+              console.log("create dir: " + targetDir);
+              fs.mkdir(targetDir, { recursive: false }, (errDir) => {
+                  if (errDir) throw errDir;
+              });
+          }
 
-    done();
+          fs.symlink(resolvedImgPath, targetDir + '/themeResources', 'dir', function(errRealPath2) {
+              if(errRealPath2) { console.log(errRealPath2); }
+          });
+      });
+  });
+
+  done();
+});
+
+gulp.task('setup:symlinks_ext', function(done) {
+  function createSymlink(sourcePath, targetPath) {
+      if(fs.existsSync(sourcePath) && !fs.existsSync(targetPath)) {
+          console.log("Symlink from: " + sourcePath + " to " + targetPath);
+          fs.symlink(sourcePath, targetPath, 'dir', function(err) {
+              if(err) { console.log(err); }
+          });
+      } else {
+          console.log("ERROR: " + sourcePath + " - resolvedPath doesn't exist or targetPath: " + targetPath + " exists");
+      }
+  }
+
+  createSymlink(fs.realpathSync('Configuration/Typo3/AdditionalConfiguration.php'), '../../AdditionalConfiguration.php');
+  createSymlink(fs.realpathSync('Configuration/Typo3/sites'), '../../sites');
+
+  done();
 });
 
 // SETUP - FULL SETUP
-gulp.task('setup', gulp.series('install:onsave', 'setup:symlinks'));
+gulp.task('setup', gulp.series('install:onsave', 'setup:symlinks', 'setup:symlinks_ext'));
 
 // UPGRADE / SELF-UPDATER
 gulp.task('upgrade', function(done){

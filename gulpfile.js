@@ -135,14 +135,26 @@ gulp.task('setup:symlinks', function(done) {
 
 gulp.task('setup:symlinks_ext', function(done) {
   function createSymlink(sourcePath, targetPath) {
-      if(fs.existsSync(sourcePath) && !fs.existsSync(targetPath)) {
-          console.log("Symlink from: " + sourcePath + " to " + targetPath);
-          fs.symlink(sourcePath, targetPath, 'dir', function(err) {
-              if(err) { console.log(err); }
+    if(fs.existsSync(sourcePath) && !fs.existsSync(targetPath)) {
+        console.log("Symlink from: " + sourcePath + " to " + targetPath);
+        try {
+          var checkFile = fs.lstatSync(sourcePath).isDirectory() ? 'dir' : 'file';
+          fs.symlink(sourcePath, targetPath, checkFile, function(err) {
+            if(err) { console.log(err); }
           });
-      } else {
-          console.log("ERROR: " + sourcePath + " - resolvedPath doesn't exist or targetPath: " + targetPath + " exists");
-      }
+        } catch(e) {
+          // Handle error
+          console.log("ERROR:");
+          console.log(e);
+          if(e.code == 'ENOENT') {
+              //no such file or directory
+              console.log("No such file or directory found: " + sourcePath);
+          }
+        }
+        console.log(checkFile);
+    } else {
+        console.log("ERROR: " + sourcePath + " - resolvedPath doesn't exist or targetPath: " + targetPath + " exists");
+    }
   }
 
   createSymlink(fs.realpathSync('Configuration/Typo3/AdditionalConfiguration.php'), '../../AdditionalConfiguration.php');

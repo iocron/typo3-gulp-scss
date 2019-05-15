@@ -165,6 +165,7 @@ gulp.task('setup:symlinks_ext', function(done) {
 
 // SETUP - FULL SETUP
 gulp.task('setup', gulp.series('install:onsave', 'setup:symlinks', 'setup:symlinks_ext'));
+gulp.task('setup:theme', gulp.series('setup:symlinks', 'setup:symlinks_ext'));
 
 // UPGRADE / SELF-UPDATER
 gulp.task('upgrade', function(done){

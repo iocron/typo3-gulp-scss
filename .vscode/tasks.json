@@ -1,17 +1,15 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
+// Unter https://go.microsoft.com/fwlink/?LinkId=733558
+// finden Sie Informationen zum Format von "tasks.json"
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "gulp watch",
             "type": "gulp",
             "task": "watch",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "auto": true
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         }
     ]
 }

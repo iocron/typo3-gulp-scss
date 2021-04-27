@@ -4,8 +4,9 @@ This Script creates from all Resources/Public/Scss/\*.scss Files corresponding C
 
 ## System Requirements:
 
-- Node 8.x or higher (check with `node --version`)
-- NPM 5.6 or higher (check with `npm --version`)
+- Node 14.x or higher (check with `node --version`)
+    - After Installation make sure NPM is up-to-date: `npm install -g npm`
+- NPM 7.0 or higher (check with `npm --version`)
 - Gulp CLI (you can simply install it with: `npm install gulp-cli -g` if you have node/npm installed already)
 
 If Node/NPM is not installed on your system then please install it: https://nodejs.org/en/download/

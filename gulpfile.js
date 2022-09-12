@@ -14,7 +14,7 @@
 
 // NPM PACKAGES
 let gulp = require('gulp'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     rename = require("gulp-rename"),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
@@ -162,7 +162,7 @@ gulp.task('upgrade', function(done){
 gulp.task('sass:uncompressed', function(done){
   gulp.src(scssPath + '/**/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(cssPath));
   done();
@@ -171,7 +171,7 @@ gulp.task('sass:uncompressed', function(done){
 gulp.task('sass:compressed', function(done){
   gulp.src(scssPath + '/**/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({ suffix:".min" }))
     .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(cssPath));
@@ -186,14 +186,14 @@ gulp.task('sass:watch', function(done){
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(done){
   gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js', '!'+ jsPath +'/Libs/*'])
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     .pipe(minify({
         builtIns: false,
         evaluate: false,
         mangle: false
     }))
     .pipe(rename({ suffix:".min" }))
-    .pipe(sourcemaps.write("./sourcemaps/"))
+    //.pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(jsPath));
   done();
 });

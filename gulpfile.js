@@ -185,7 +185,7 @@ gulp.task('sass:watch', function(done){
 
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(done){
-  gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js', '!'+ jsPath +'/Libs/*'])
+  gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js', '!'+ jsPath +'/Libs/*', '!'+jsPath+'/backend/*'])
     //.pipe(sourcemaps.init())
     .pipe(minify({
         builtIns: false,
